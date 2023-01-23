@@ -1,6 +1,6 @@
 const dotenv = require("dotenv").config()
 const express = require('express')
-const videoModel = require('../models/videoModel')
+const videoModel = require('../model/videoModel')
 const router = new express.Router();
 
 

@@ -13,7 +13,7 @@ app.use(bodyParser.json());
 
 app.use(controller);
 
-const Port = process.env.PORT || 3000; //either from .env
+const Port = process.env.PORT; //either from .env
 
 
 mongoose.connect('mongodb://localhost:27017/YT_test', { useNewUrlParser: true })
