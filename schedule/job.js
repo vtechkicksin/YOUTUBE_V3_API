@@ -6,9 +6,9 @@ async function job()
 {
     const API_KEY = process.env.API_KEY;
     const query = process.env.QUERY;
-    const data = await new YT_data().getVideoData(API_KEY,query);
+    let data = await new YT_data().getVideoData(API_KEY,query);
     console.log("sandeepingg",data);
-    if(data==false)
+    if(data==false) // I will take 2 Youtube Key if one return me false then i will use 2nd
     {
         const API_KEY_1 = process.env.API_KEY_1;
         data = await new YT_data().getVideoData(API_KEY_1,query);

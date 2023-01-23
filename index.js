@@ -4,11 +4,14 @@ const express = require("express");
 const app = express();
 const bodyParser = require("body-parser");
 
+const controller = require("./router/controller");
 const mongoose = require("mongoose");
 
 
 app.use(bodyParser.urlencoded({extended:false})); // this is to parse the request ,or simply to use req.body
 app.use(bodyParser.json());
+
+app.use(controller);
 
 const Port = process.env.PORT || 3000; //either from .env
 
