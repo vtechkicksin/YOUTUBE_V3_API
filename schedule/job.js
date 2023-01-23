@@ -13,6 +13,7 @@ async function job()
         const API_KEY_1 = process.env.API_KEY_1;
         data = await new YT_data().getVideoData(API_KEY_1,query);
     }
+    const arr = [];
     data.items.forEach((item) => //converting json response into array then looping and then inserting to mongodb collection
     {
         const title = item.snippet.title;
@@ -23,14 +24,19 @@ async function job()
         console.log(description);
         console.log(publishedAt);
         console.log(thumbnailUrl);
-        insertData(title,description,publishedAt,thumbnailUrl);
+        arr.push({title:title,
+            description:description,
+            imgUrl:thumbnailUrl,
+            publishedAt:publishedAt
+            })
     });
+    insertData(arr);
 }
 
-async function insertData(title,description,publishedAt,thumbnailUrl) 
+async function insertData(arr) 
 {
     //this will create entry one by one
-  await videoModel.create({title:title , description:description , imgUrl:thumbnailUrl, publishedAt:publishedAt}, (error, docs)=> {
+  await videoModel.insertMany(arr,{ordered:false}, (error, docs)=> {
   if (error) {
       console.log(error);
   } else {
