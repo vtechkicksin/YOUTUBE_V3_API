@@ -21,5 +21,7 @@ mongoose.connect('mongodb://localhost:27017/YT_test', { useNewUrlParser: true })
     app.listen(Port,()=>{
         console.log(`We are flying on Port ${Port}`);
     })
-    require("./schedule/job");
+    setInterval(()=>{
+        require("./schedule/job");  // scheduling job for every 10 seconds
+    }, 10000)
 })
