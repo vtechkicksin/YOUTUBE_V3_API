@@ -16,7 +16,7 @@ router.get('/getAllData', function(req, res) {
     .skip(skip)
     .limit(limit)
     .exec(function(err, data) {
-    if (err) {
+    if (err) { 
         res.status(500).send(err);
     } else {
         res.status(200).json(data);
