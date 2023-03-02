@@ -1,6 +1,6 @@
 const dotenv = require("dotenv").config();
 const express = require("express");
-
+const schedule = require("./schedule/job");
 
 const app = express();
 const bodyParser = require("body-parser");
@@ -25,7 +25,8 @@ mongoose.connect('mongodb://localhost:27017/YT_test', { useNewUrlParser: true })
     app.listen(Port,()=>{
         console.log(`We are flying on Port ${Port}`);
     })
-    setInterval(()=>{
-        require("./schedule/job");  // scheduling job for every 10 seconds
-    }, 10000)
+    schedule.job();
+    // setInterval(()=>{
+    //       //scheduling job for every 10 seconds
+    // }, 10000)
 })
